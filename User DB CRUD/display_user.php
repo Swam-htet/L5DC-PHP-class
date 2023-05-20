@@ -1,64 +1,46 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display User</title>
-
-
-    <!-- Optional theme -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-</head>
-
-<body>
+<?php include "./component/header.php" ?>
 <?php
 
-// config
-$host = "localhost";
-$username = "root";
-$password = "";
-$dbname = "userdb";
-$tbName = "user";
 
-//connection
-$connection = mysqli_connect($host, $username, $password, $dbname);
+include "./config/config.php";
+
+include "./component/card.php";
+
+
+
+$tbName = "User";
+
+if ($connection->connect_error) {
+        die("Connection Error : " . $connection->connect_error);
+}
 
 $sql = "select * from $tbName";
 
 // select * from user
-$list = mysqli_query($connection, $sql);
+$list = $connection->query($sql);
 
-// count the number of user
-$num_user = mysqli_num_rows($list);
-echo "<div class='d-flex flex-wrap'>";
-for ($i = 1; $i <= $num_user; $i++) {
+if ($list) {
 
-    // fetch item from query array
-    $item = mysqli_fetch_assoc($list);
+        // count the number of user
+        $num_user = $list->num_rows;
+        echo "<h5>Total Number of User : $num_user </h5>";
 
-    echo "<div class='col-4'>
-            <div class='card m-1 p-2'>
-                 <h5 class='card-title' style='font-size: 12px'> User ID -> " . $item['id'] . "</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Full Name -> " . $item['firstName'] . " " . $item['lastName'] . "</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Username -> " . $item['userName']  ."</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Email -> " . $item['email'] . "</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Profile Photo Path -> " . $item['photo'] . "</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Phone Number -> " . $item['phone'] . "</h5>
-                 <h5 class='card-title' style='font-size: 12px'> Country -> " . $item['country'] . "</h5>
-            </div>
-          </div>";
+        //  display flex wrep
+        echo "<div class='d-flex flex-wrap'>";
+
+        if ($list && $num_user > 0) {
+                // Loop through the rows and access the data
+                while ($item = $list->fetch_assoc()) {
+                        $render = Card($item);
+                        echo "$render";
+                }
+        } else {
+                echo "No user found";
+        }
+        echo "</div>";
+} else {
 }
-echo "</div>";
 
 ?>
-</body>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-
-</html>
+<?php include "./component/footer.php" ?>

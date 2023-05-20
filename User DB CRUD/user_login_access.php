@@ -1,45 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include "./component/header.php" ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Demo</title>
+<?php
 
+include "./config/config.php";
 
-    <!-- Optional theme -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+$tbName = "User";
 
-</head>
+if ($connection->connect_error) {
+    die("Connection Error : " . $connection->connect_error);
+}
 
-<body>
+$data = json_decode(json_encode($_POST), false);
 
-    <?php
-    // config
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "userdb";
-    $tbName = "user";
+$sql = "SELECT * FROM $tbName WHERE userName='$data->userName' AND password='$data->password'";
 
-    //connection
-    $connection = mysqli_connect($host, $username, $password, $dbname);
+$result = $connection->query($sql);
+if($result){
 
-    $UserName = $_POST['userName'];
-    $password = $_POST['password'];
-
-    $sql = "select * from $tbName where userName='$UserName' and password='$password'";
-
-    $result = mysqli_query($connection, $sql);
-    $no_of_row = mysqli_num_rows($result);
+    $no_of_row = $result->num_rows;
 
     if ($no_of_row == 0) {
         echo "<div class='alert alert-danger m-5'> Login failed.</div>";
     } else {
         echo "<div class='alert alert-success m-5'> Login Successful. </div>";
     }
+    
+}
+else{
+    echo "<div class='alert alert-danger m-5'> User registration failed : " . $connection->error . "</div>";
+}
+?>
 
-    ?>
-
-</body>
+<?php include "./component/footer.php" ?>
