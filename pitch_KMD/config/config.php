@@ -4,10 +4,8 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "pitchDB";
-    $tbname = "pitchInfo";
+    $dbName = "pitchDB";
 
-    //connection
-    $connection = mysqli_connect($host, $username, $password, $dbname);
-    
+
+
 ?>

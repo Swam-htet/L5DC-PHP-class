@@ -8,19 +8,19 @@ $connection = new mysqli($host,$username,$password,$dbName);
 if ($connection->connect_error) {
     die("Connection Error : " . $connection->connect_error);
 }
-$tbName = "user";
+$tbName = "userINFO";
 
 // query in string
 $sql = "INSERT INTO $tbName 
         (firstName, lastName, userName, password, phone, email, country, remark) 
-        VALUES ('Swam', 'Htet', 'alphar', '123456', '09400500600', 'swamhtet129@gmail.com', 'Myanmar', 'This is remark of Swam Htet')";
+        VALUES ('Admin', 'Admin', 'Admin', '12345', '09300400500', 'admin12345@gmail.com', 'Myanmar', 'This is remark of Admin')";
 
 
 // query
 if ($connection->query($sql)) {
-    echo "<div class='alert alert-success m-5'> Inserting Data is successful. </div>";
+    echo "Inserting Data is successful.";
 } else {
-    echo "<div class='alert alert-danger m-5'> Error in inserting data to Table." . $connection->error . " </div>";
+    echo "Error in inserting data to Table." . $connection->error;
 }
 
 ?>

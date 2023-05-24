@@ -3,14 +3,13 @@
 
 
 include "./config/config.php";
-
-
-
-$tbName = "User";
-
+$connection = new mysqli($host, $username, $password, $dbName);
 if ($connection->connect_error) {
     die("Connection Error : " . $connection->connect_error);
 }
+
+$tbName = "userINFO";
+
 
 $data = json_decode(json_encode($_POST), false);
 
@@ -35,19 +34,19 @@ if ($password == $confirm_password) {
                     VALUES('$data->firstName','$data->lastName','$data->userName','$data->password','$data->phone','$data->email','$data->country','$data->remark');";
 
             if ($connection->query($sql)) {
-                echo "<div class='alert alert-success m-5'> User registration is successful.</div>";
+                echo "User registration is successful.";
             } else {
-                echo "<div class='alert alert-danger m-5'> User registration failed : " . $connection->error . "</div>";
+                echo "User registration failed : " . $connection->error;
             }
         } else {
-            echo "<div class='alert alert-danger m-5'> Username is already existed.</div>";
+            echo "Username is already existed.";
         }
     } else {
-        echo "<div class='alert alert-danger m-5'> User registration failed : " . $connection->error . "</div>";
+        echo "User registration failed : " . $connection->error;
     }
 } else {
     //     check password with confirm-password
-    echo "<div class='alert alert-warning m-5'> Check your password again.</div>";
+    echo "Check your password again.";
 }
 
 ?>

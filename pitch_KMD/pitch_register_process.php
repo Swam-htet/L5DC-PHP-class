@@ -1,73 +1,62 @@
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitch Information</title>
-</head>
+session_start();
+$session_user = $_SESSION['username'];
+include "./component/header.php";
 
-<body>
-    <?php
+if ($session_user == 'admin') {
 
     include("./config/config.php");
+    $connection = new mysqli($host, $username, $password, $dbName);
+    $tbName = "pitchINFO";
 
 
-    if(!$connection){
-        $error_message = mysqli_connect_errno();
+    if ($connection->connect_error) {
+        $error_message = $connection->connect_error;
         error_log("Connection error >> $error_message");
     }
-    $data = $_POST;
-    var_dump("This is post input >> $data");
 
-    // data from pitch register
-    $pname = trim($_POST['pname']);
-    $location = trim($_POST['location']);
-    $address = trim($_POST['address']);
-    $general = trim($_POST['general']);
-    $country = $_POST['country'];
+    $data = json_decode(json_encode($_POST), false);
+
+    // duplicated check 
+    $check = "SELECT * FROM $tbName WHERE pname = '$data->pname'";
+
+    // file name
+    $file = $_FILES['photo']['name'];
+
+    // assign file path
+    $path = "photo/" . $file;
 
 
+    // file IO 
+    $copy = copy($_FILES['photo']['tmp_name'], $path);
 
-    // // photo copy and save path to the db
-    // $photo_name = $_FILES['photo']['name'];
-
-    // $path = "photos/" . $photo_name;
-
-    // $copied = copy($_FILES['photo']['tmp_name'], $path);
-
-    // if ($copied) {
-    //     echo "Photo uploaded";
-    // }
-
-    // // duplicated check 
-    // $sql_existing_name = "Select * from pitch_info where pitch_name='$pname' ";
-
-    // $result = mysqli_query($connection, $sql_existing_name);
-
-    // $num_rows = mysqli_num_rows($result);
-
-    // // if no duplicated pitch 
-    // if ($num_rows == 0) {
-
-    // save to the db
-    $sql = "insert into pitch_info(pitch_name,location,address,general_info,photo, country) 
-                        values('$pname', '$location', '$address','$general','$path','$country')";
-
-    if (mysqli_query($connection, $sql))
-        // successful
-        echo "Pitch registration successed.";
-
-    else {
-        // error in saving 
-        echo "Error  registrarion";
+    // copy successful 
+    if ($copy) {
+        echo "Photo is copied";
     }
-    // } else {
-    //     // duplicated condition 
-    //     echo "This username is already Exist!";
-    // }
 
-    ?>
-</body>
+    // duplicated check query 
+    $result = $connection->query($check);
 
-</html>
+    // no duplication 
+    if ($result->num_rows == 0) {
+
+        // insert 
+        $sql = "INSERT INTO $tbName (pname,location,address,photo,general,country,remark) 
+    VALUES ('$data->pname','$data->location','$data->address','$path','$data->general','$data->country','$data->remark');";
+
+        if ($connection->query($sql) == true) {
+            echo "Registration successful";
+        } else {
+            echo "Registration failed : " . $connection->error;
+        }
+    } else {
+        echo "Pitch is already existed.";
+    }
+} else {
+    echo "Admin User only";
+}
+?>
+<?php include "./component/footer.php" ?>
+

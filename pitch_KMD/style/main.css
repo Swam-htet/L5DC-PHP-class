@@ -1,0 +1,14 @@
+/* @import url('./reset'); */
+
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 25%;
+}
+
+.font-danger{
+    color: red;
+}

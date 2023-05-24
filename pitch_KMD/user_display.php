@@ -6,11 +6,7 @@ include "./config/config.php";
 
 $connection = new mysqli($host, $username, $password, $dbName);
 
-include "./component/card.php";
-
-
-
-$tbName = "User";
+$tbName = "userINFO";
 
 if ($connection->connect_error) {
         die("Connection Error : " . $connection->connect_error);
@@ -33,8 +29,8 @@ if ($list) {
         if ($list && $num_user > 0) {
                 // Loop through the rows and access the data
                 while ($item = $list->fetch_assoc()) {
-                        $render = Card($item);
-                        echo "$render";
+                        var_dump($item);
+                        echo "</br></br>";
                 }
         } else {
                 echo "No user found";

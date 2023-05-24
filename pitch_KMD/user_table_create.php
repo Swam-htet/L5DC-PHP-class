@@ -5,7 +5,7 @@ include "./config/config.php";
 $connection = new mysqli($host,$username,$password,$dbName);
 
 
-$tbName = "User";
+$tbName = "userINFO";
 
 if ($connection->connect_error) {
     die("Connection Error : " . $connection->connect_error);

@@ -1,6 +1,8 @@
 <?php
 
 include "./config/config.php";
+$connection = new mysqli($host,$username,$password);
+
 
 
 if ($connection->connect_error) {
