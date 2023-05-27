@@ -1,0 +1,131 @@
+/* margin */
+:root {
+    --one: 1rem;
+    --two: 2rem;
+    --three: 50px;
+    --four: 70px;
+    --five: 100px;
+}
+
+/* all side  */
+.m-1 {
+    margin: var(--one);
+
+}
+
+.m-2 {
+    margin: var(--two);
+}
+
+.m-3 {
+    margin: var(--three);
+}
+
+.m-4 {
+    margin: var(--four);
+}
+
+.m-5 {
+    margin: var(--five);
+}
+
+/* margin end */
+
+.m-e-1 {
+    margin-right: var(--one);
+}
+
+.m-e-2 {
+    margin-right: var(--two);
+}
+
+.m-e-3 {
+    margin-right: var(--three);
+}
+
+.m-e-4 {
+    margin-right: var(--four);
+}
+
+.m-e-5 {
+    margin-right: var(--five);
+}
+
+/* margin start */
+.m-s-1 {
+    margin-left: var(--one);
+}
+
+.m-s-2 {
+    margin-left: var(--two);
+
+}
+
+.m-s-3 {
+    margin-left: var(--three);
+
+}
+
+.m-s-4 {
+    margin-left: var(--four);
+
+}
+
+.m-s-5 {
+    margin-left: var(--five);
+
+}
+
+
+
+/* margin top */
+.m-t-1 {
+    margin-top: var(--one);
+}
+
+.m-t-2 {
+    margin-top: var(--two);
+
+}
+
+.m-t-3 {
+    margin-top: var(--three);
+
+}
+
+.m-t-4 {
+    margin-top: var(--four);
+
+}
+
+.m-t-5 {
+    margin-top: var(--five);
+
+}
+
+
+/* margin button */
+
+.m-b-1 {
+    margin-bottom: var(--one);
+}
+
+.m-b-2 {
+    margin-bottom: var(--two);
+
+}
+
+.m-b-3 {
+    margin-bottom: var(--three);
+
+}
+
+.m-b-4 {
+    margin-bottom: var(--four);
+
+}
+
+.m-b-5 {
+    margin-bottom: var(--five);
+
+}
