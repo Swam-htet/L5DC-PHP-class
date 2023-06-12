@@ -7,7 +7,7 @@ session_start();
 <?php
 
 
-include "./config/config.php";
+    include "./config/config.php";
 
 $tbName = "userINFO";
 $connection = new mysqli($host, $username, $password, $dbName);
@@ -41,13 +41,6 @@ if ($result) {
             echo "<a href='./pitch_register.php'>Camping Regsiter</a>";
             echo "</br>";
             echo "<a href='./pitch_search.php'>Search Camping</a>";
-            
-
-            
-
-
-
-
 
         } else {
             echo "Visiter Login Successful";

@@ -46,17 +46,15 @@ if ($result) {
             if ($session_user == "admin") {
                 echo "<a href='./pitch_delete.php?id=" . $item->id . "'>Delete</a>";
                 echo "</br>";
+                echo "<a href='./pitch_delete.php?id=" . $item->id . "'>Delete</a>";
+                echo "</br>";
 
                 echo "<a href='./pitch_update.php?id=" . $item->id . "'>Update</a>";
                 echo "</br>";
-
-
             }
 
             echo "</div>";
             echo "</br>";
-
-
         }
     } else {
         echo "No pitch found";

@@ -1,7 +1,748 @@
-@import url('./reset.css');
-@import url('./layout.css');
-@import url('./padding.css');
-@import url('./margin.css');
-@import url('./navbar.css');
-@import url('./font.css');
+/* 
+    css map 
+    1. reset.css 
+    2. root
+        - size
+        - color
+    3. layout.css
+        - row
+        - container, container-fluid
+        - col
 
+    4. margin.css
+        - m 1 to 5
+        - m-e 1 to 5
+        - m-s 1 to 5
+        - m-t 1 to 5
+        - m-e 1 to 5
+
+    5. padding.css
+        - p 1 to 5 
+        - p-e 1 to 5 
+        - p-s 1 to 5 
+        - p-t 1 to 5 
+        - p-e 1 to 5
+
+    6. background.css
+        - bg-colorName
+        
+    7. font.css 
+        - fs -> smaller to larger 
+        - f-colorName
+        - text style 
+
+    8. navbar.css
+
+    9. footer.css 
+
+    10. header.css 
+        - h 1 to6 and .h 1 to 6
+
+    11. social list 
+        - social list 
+        - soical-link
+        - social-icon 
+
+    12. alert.css 
+    13. card.css 
+    14. button.css
+    15. dropdown.css
+    16. form.css 
+
+
+    
+
+
+    
+
+
+ */
+@import url('./reset.css');
+
+
+:root {
+    --one: 5px;
+    --two: 10px;
+    --three: 20px;
+    --four: 30px;
+    --five: 50px;
+    --six: 70px;
+
+
+    --primary: #0d6efd;
+    --secondary: #6c757d;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #212529;
+
+    --alert-primary: #cfe2ff;
+    --alert-secondary: #e2e3e5;
+    --alert-success: #d1e7dd;
+    --alert-info: #cff4fc;
+    --alert-warning: #fff3cd;
+    --alert-danger: #f8d7da;
+    --alert-light-: #fcfcfd;
+    --alert-dark: #ced4da;
+
+    --font-family: system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        "Noto Sans",
+        "Liberation Sans",
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+/* font family */
+html {
+    font-family: var(--font-family);
+}
+
+/* layout */
+
+/* row */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* container */
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container-fulid {
+    width: 100%;
+}
+
+/* column */
+.col {
+    width: 10%;
+}
+
+.col-2 {
+    width: 20%;
+
+}
+
+.col-3 {
+    width: 30%;
+
+}
+
+
+.col-4 {
+    width: 40%;
+
+}
+
+.col-5 {
+    width: 50%;
+
+}
+
+.col-6 {
+    width: 60%;
+
+}
+
+.col-7 {
+    width: 70%;
+
+}
+
+.col-8 {
+    width: 80%;
+
+}
+
+.col-9 {
+    width: 90%;
+
+}
+
+.col-10 {
+    width: 100%;
+
+}
+
+
+/* margin */
+
+/* all side  */
+.m-1 {
+    margin: var(--one);
+
+}
+
+.m-2 {
+    margin: var(--two);
+}
+
+.m-3 {
+    margin: var(--three);
+}
+
+.m-4 {
+    margin: var(--four);
+}
+
+.m-5 {
+    margin: var(--five);
+}
+
+/* margin end */
+
+.m-e-1 {
+    margin-right: var(--one);
+}
+
+.m-e-2 {
+    margin-right: var(--two);
+}
+
+.m-e-3 {
+    margin-right: var(--three);
+}
+
+.m-e-4 {
+    margin-right: var(--four);
+}
+
+.m-e-5 {
+    margin-right: var(--five);
+}
+
+/* margin start */
+.m-s-1 {
+    margin-left: var(--one);
+}
+
+.m-s-2 {
+    margin-left: var(--two);
+
+}
+
+.m-s-3 {
+    margin-left: var(--three);
+
+}
+
+.m-s-4 {
+    margin-left: var(--four);
+
+}
+
+.m-s-5 {
+    margin-left: var(--five);
+
+}
+
+
+
+/* margin top */
+.m-t-1 {
+    margin-top: var(--one);
+}
+
+.m-t-2 {
+    margin-top: var(--two);
+
+}
+
+.m-t-3 {
+    margin-top: var(--three);
+
+}
+
+.m-t-4 {
+    margin-top: var(--four);
+
+}
+
+.m-t-5 {
+    margin-top: var(--five);
+
+}
+
+
+/* margin button */
+
+.m-b-1 {
+    margin-bottom: var(--one);
+}
+
+.m-b-2 {
+    margin-bottom: var(--two);
+
+}
+
+.m-b-3 {
+    margin-bottom: var(--three);
+
+}
+
+.m-b-4 {
+    margin-bottom: var(--four);
+
+}
+
+.m-b-5 {
+    margin-bottom: var(--five);
+
+}
+
+/* padding */
+
+/* all side  */
+.p-1 {
+    padding: var(--one);
+
+}
+
+.p-2 {
+    padding: var(--two);
+}
+
+.p-3 {
+    padding: var(--three);
+}
+
+.p-4 {
+    padding: var(--four);
+}
+
+.p-5 {
+    padding: var(--five);
+}
+
+/* padding end */
+
+.p-e-1 {
+    padding-right: var(--one);
+}
+
+.p-e-2 {
+    padding-right: var(--two);
+}
+
+.p-e-3 {
+    padding-right: var(--three);
+}
+
+.p-e-4 {
+    padding-right: var(--four);
+}
+
+.p-e-5 {
+    padding-right: var(--five);
+}
+
+/* padding start */
+.p-s-1 {
+    padding-left: var(--one);
+}
+
+.p-s-2 {
+    padding-left: var(--two);
+
+}
+
+.p-s-3 {
+    padding-left: var(--three);
+
+}
+
+.p-s-4 {
+    padding-left: var(--four);
+
+}
+
+.p-s-5 {
+    padding-left: var(--five);
+
+}
+
+
+
+/* padding top */
+.p-t-1 {
+    padding-top: var(--one);
+}
+
+.p-t-2 {
+    padding-top: var(--two);
+
+}
+
+.p-t-3 {
+    padding-top: var(--three);
+
+}
+
+.p-t-4 {
+    padding-top: var(--four);
+
+}
+
+.p-t-5 {
+    padding-top: var(--five);
+
+}
+
+
+/* padding button */
+
+.p-b-1 {
+    padding-bottom: var(--one);
+}
+
+.p-b-2 {
+    padding-bottom: var(--two);
+
+}
+
+.p-b-3 {
+    padding-bottom: var(--three);
+
+}
+
+.p-b-4 {
+    padding-bottom: var(--four);
+
+}
+
+.p-b-5 {
+    padding-bottom: var(--five);
+
+}
+
+/* background */
+
+/* background color */
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-danger {
+    background-color: var(--danger);
+}
+
+.bg-warning {
+    background-color: var(--warning);
+}
+
+.bg-success {
+    background-color: var(--success);
+}
+
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+.bg-info {
+    background-color: var(--info);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+/* font */
+
+/* font size */
+.fs-smaller {
+    font-size: smaller;
+}
+
+.fs-small {
+    font-size: small;
+}
+
+.fs-medium {
+    font-size: medium;
+}
+
+.fs-large {
+    font-size: large;
+}
+
+.fs-larger {
+    font-size: larger;
+}
+
+/* font color */
+.f-primary {
+    color: var(--primary);
+}
+
+.f-secondary {
+    color: var(--secondary);
+}
+
+.f-warning {
+    color: var(--warning);
+}
+
+.f-danger {
+    color: var(--danger);
+}
+
+.f-success {
+    color: var(--success);
+}
+
+.f-info {
+    color: var(--info);
+}
+
+.f-dark {
+    color: var(--dark);
+}
+
+.f-light {
+    color: var(--light);
+}
+
+/* text style*/
+.text-center {
+    text-align: center;
+}
+
+/* navbar */
+.navbar {
+    height: 50px;
+    align-items: center;
+
+}
+
+.navbar-brand {
+    text-decoration: none;
+    font-size: 200%;
+}
+
+/* .navbar-item {} */
+
+
+.navbar-link {
+    text-decoration: none;
+    font-size: larger;
+    color: black;
+
+}
+
+/* footer */
+
+.footer-text {
+    line-height: 1.5rem;
+}
+
+.footer-list {
+    list-style: none;
+}
+
+/* .footer-list-item {} */
+
+.footer-list-item .item-link {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+
+
+
+
+/* header */
+
+h1,
+.h1 {
+    font-size: var(--six);
+    font-weight: bold;
+}
+
+h2,
+.h2 {
+    font-size: var(--five);
+    font-weight: bold;
+}
+
+h3,
+.h3 {
+    font-size: var(--four);
+    font-weight: bold;
+}
+
+h4,
+.h4 {
+    font-size: var(--three);
+    font-weight: bold;
+}
+
+h5,
+.h5 {
+    font-size: var(--two);
+    font-weight: bold;
+}
+
+h6,
+.h6 {
+    font-size: var(--one);
+    font-weight: bold;
+}
+
+/* social list */
+.social-list {
+    justify-content: center;
+    align-items: center;
+}
+
+.social-link {
+    text-decoration: none;
+}
+
+.social-icon {
+    width: var(--three);
+}
+
+/* alert */
+.alert {
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+.alert-danger {
+    background-color: var(--alert-danger);
+}
+
+.alert-warning {
+    background-color: var(--alert-warning);
+}
+
+.alert-info {
+    background-color: var(--alert-info);
+}
+
+.alert-success {
+    background-color: var(--alert-success);
+}
+
+.alert-primary {
+    background-color: var(--alert-primary);
+}
+
+/* card */
+.card {
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.card-img {
+    width: 100px;
+}
+
+.card-header {
+    margin: var(--two) 0px;
+}
+
+.card-body img {
+    width: 100%;
+    margin: var(--two) 0px;
+}
+
+.card-footer {
+    margin: var(--two) 0px;
+}
+
+/* button */
+.btn {
+    margin: var(--three);
+    padding: var(--two) var(--four);
+    font-size: var(--three);
+    width: auto;
+    text-decoration: none;
+    color: #fff;
+    border-radius: var(--one);
+    border: 1px solid transparent;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    transition: 0.5s;
+    box-shadow: 0 0 0 5px rgba(149, 149, 174, 0.5);
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 5px rgba(149, 149, 174, 0.5);
+}
+
+/* background color */
+.btn-primary {
+    background-color: var(--primary);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+}
+
+.btn-success {
+    background-color: var(--success);
+}
+
+.btn-warning {
+    background-color: var(--warning);
+}
+
+.btn-info {
+    background-color: var(--info);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+}
+
+
+/* dropdown */
+.dropdown-box {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+/* form */
+.form-text {
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: black;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+    background-color: var(--light);
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+}

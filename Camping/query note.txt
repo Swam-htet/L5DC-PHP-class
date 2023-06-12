@@ -1,0 +1,80 @@
+// db create
+CREATE DATABASE CampDB;
+
+// table chose
+USE CampDB;
+
+
+// user table creae
+CREATE TABLE User 
+(Id integer auto_increment primary key,
+firstName varchar(255) not null, 
+lastName varchar(255) not null,
+email varchar(255) not null UNIQUE,
+password varchar(255) not null,
+phoneNumber varchar(255) not null
+);
+
+// user register 
+INSERT INTO User (firstName,lastName,email,password,phoneNumber) 
+values("Admin","Admin","admin@gmail.com","admin","09500600700");
+
+
+// login check 
+SELECT * FROM User WHERE email = "admin@gmail.com";
+
+// camp table 
+create table camp (
+    id integer primary key auto_increment,
+    name varchar(255) not null,
+    address varchar(255) not null,
+    location text not null,
+    phone varchar(255) not null,
+    no_premium integer not null,
+    no_improved integer not null,
+    no_standard integer not null,
+    features text,
+    country varchar(255) not null,
+    slideShow varchar(255) not null,
+    profile varchar(255) not null
+);
+
+INSERT INTO (name,address,location,features,country,phone,no_premium,no_improved,no_standard,slideShow,profile) VALUES('','','','','','','','','','','');
+
+
+SELECT * from Camp;
+
+CREATE TABLE review 
+    (id integer auto_increment primary key,
+    comment text not null,
+    point integer,
+    user_id integer,
+    camp_id integer,
+    foreign key(user_id) references user(id),
+    foreign key(camp_id) references camp(id));
+
+insert into review (comment,point,user_id,camp_id) values();
+
+create table booking(
+    id integer primary key auto_increment,
+    no_premium integer not null,
+    no_improved integer not null,
+    no_standard integer not null,
+    date varchar(255) not null,
+    no_day integer not null,
+    user_id integer,
+    camp_id integer,
+    foreign key(user_id) references user(id),
+    foreign key(camp_id) references camp(id)
+)
+
+insert into booking(no_premium,no_improved,no_standard,date,no_day,camp_id,user_id) values();
+
+CREATE TABLE contact (
+    id integer auto_increment primary key,
+    message text not null,
+    user_id integer,
+    camp_id integer,
+    foreign key(user_id) references user(id),
+    foreign key(camp_id) references camp(id)
+)

@@ -1,20 +1,24 @@
 <?php
+session_start();
+
+$session_user = $_SESSION['session_user'];
 
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
 
+?>
 
+<?php
 
-// navbar list
+// list for navbar 
 $list = array(
-    array('name' => 'Item 1', 'link' => "#"),
-    array('name' => 'Item 2', 'link' => "#"),
-    array('name' => 'Item 3', 'link' => "#"),
-    array('name' => 'Item 4', 'link' => "#"),
+    array('name' => 'Home', 'link' => "index.php"),
+    array('name' => 'Information', 'link' => "information.php"),
 
 );
 
+// current tab
 $current_tab = "Home";
 
 
@@ -26,12 +30,22 @@ navbar_function($list);
 
 ?>
 
+<?php
+echo "<div class='container card'>";
+if ($session_user == "Admin") {
+    echo "<h1>Admin Home Page</h1>";
+} else if ($session_user == "User") {
+    echo "<h1>User Home Page</h1>";
+} else {
+    echo "<h1>Visitor Home Page</h1>";
+}
+echo "</div>";
+
+?>
 
 
+<?php
 
-
-<?php 
-
-    // footer 
-    include_once "./component/footer.php";
+// footer 
+include_once "./component/footer.php";
 ?>

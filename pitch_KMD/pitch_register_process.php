@@ -59,4 +59,3 @@ if ($session_user == 'admin') {
 }
 ?>
 <?php include "./component/footer.php" ?>
-
