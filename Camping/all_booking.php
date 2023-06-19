@@ -60,17 +60,15 @@ if (!isset($session_user)) {
     if ($result) {
 
         $reviews = $result->num_rows;
-        echo "<div class='row'>";
 
         if ($result && $reviews > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
-                Booking_card($item);
+                Booking_card($item, $session_user);
             }
         } else {
             echo "<h2>No bookings found</h2>";
         }
-        echo "</div>";
     } else {
         echo "<div class='alert alert-danger'>Error: $connection->error</div>";
     }

@@ -82,38 +82,44 @@ navbar_function($list);
 
 <!-- register  -->
 <div class="container">
-    <div class="row">
+    <h2 class="text-center m-2">Account Register </h2>
 
+    <div class="row">
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-            <div class='m-1'>
-                <label for="emai">First Name : </label>
-                <input type="text" name="firstName" id="firstName" placeholder="Enter your first name here">
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="emai">First Name : </label>
+                <input type="text" name="firstName" id="firstName" class="form-control"
+                    placeholder="Enter your first name here">
             </div>
-            <div class='m-1'>
-                <label for="emai">Last Name : </label>
-                <input type="text" name="lastName" id="lastName" placeholder="Enter your last name here">
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="emai">Last Name : </label>
+                <input type="text" name="lastName" id="lastName" class="form-control"
+                    placeholder="Enter your last name here">
             </div>
-            <div class='m-1'>
-                <label for="emai">Email : </label>
-                <input type="text" name="email" id="email" placeholder="Enter your email here">
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="emai">Email : </label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email here">
             </div>
-            <div class='m-1'>
-                <label for="phoneNumber">Phone Number : </label>
-                <input type="text" name="phoneNumber" id="phone Number" placeholder="Enter your phone number here">
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="phoneNumber">Phone Number : </label>
+                <input type="text" name="phoneNumber" id="phone Number" class="form-control"
+                    placeholder="Enter your phone number here">
             </div>
-            <div class='m-1'>
-                <label for="password">Password : </label>
-                <input type="password" name="password" id="password" placeholder='Enter your password here'>
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="password">Password : </label>
+                <input type="password" name="password" id="password" class="form-control"
+                    placeholder='Enter your password here'>
             </div>
-            <div class='m-1'>
-                <label for="confirmPassword">Confirm Password : </label>
-                <input type="password" name="confirmPassword" id="confirmPassword" placeholder='Enter your password again'>
+            <div class='m-b-3'>
+                <label class="form-text m-b-2" for="confirmPassword">Confirm Password : </label>
+                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                    placeholder='Enter your password again'>
             </div>
             <div></div>
 
             <a href="login.php">Back to Login Page</a>
-            <button type="submit" name='submit'>Register Here</button>
+            <button type="submit" class="btn btn-warning" name='submit'>Register Here</button>
         </form>
     </div>
 </div>

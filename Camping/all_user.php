@@ -19,6 +19,7 @@ $tbName = "user";
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
+include_once './component/card.php';
 ?>
 
 <?php
@@ -58,10 +59,7 @@ if ($session_user === "Admin") {
         if ($result && $reviews > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
-                var_dump($item);
-
-                echo "</br>";
-                echo "</br>";
+                User_card($item);
             }
         } else {
             echo "No User found";

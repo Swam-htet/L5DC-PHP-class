@@ -103,14 +103,16 @@ if (isset($session_user)) {
                 echo "<hr>";
                 if ($session_user === "User") {
 ?>
-                    <div id="booking-form">
-                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                            <input type="hidden" name="camp_id" value="<?php echo $camp_id ?>">
-                            <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
-                            <?php include 'component/booking.php' ?>
+<h2 class="text-center">Booking Here </h2>
 
-                        </form>
-                    </div>
+<div id="booking-form" class="row">
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="col-5 p-2">
+        <input type="hidden" name="camp_id" value="<?php echo $camp_id ?>">
+        <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+        <?php include 'component/booking.php' ?>
+
+    </form>
+</div>
 
 <?php
                 }
@@ -125,7 +127,7 @@ if (isset($session_user)) {
     }
 } else {
     echo "User Only</br>";
-    echo  '<a href="create_account.php">Create account</a>';
+    echo  '<a href="create_account.php" class="btn btn-warning">Create account</a>';
 }
 ?>
 
@@ -133,21 +135,20 @@ if (isset($session_user)) {
 if ($session_user === "User") {
 
 ?>
-    <div>
-        <button>Content</button>
-        <div class="dropdown">
-            <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
-                <input type="hidden" name="camp_id" value="<?php echo $camp_id ?>">
-                <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
-                <div>
-                    <label for="message">Your Message : </label>
-                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
-
-                </div>
-                <button type="submit" name='contact'>Send</button>
-            </form>
-        </div>
+<div class="m-5">
+    <button class="btn btn-warning m-b-1">Content</button>
+    <div class="dropdown">
+        <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
+            <input type="hidden" name="camp_id" value="<?php echo $camp_id ?>">
+            <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+            <div class="p-2">
+                <label for="message" class="form-text m-b-1">Your Message : </label>
+                <textarea name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning" name='contact'>Send</button>
+        </form>
     </div>
+</div>
 <?php
 }
 ?>

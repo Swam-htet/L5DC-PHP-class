@@ -3,6 +3,10 @@ session_start();
 
 $session_user = $_SESSION['session_user'];
 
+// session counter 
+if (!isset($_SESSION['counter'])) {
+    $_SESSION['counter'] = 0;
+}
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
