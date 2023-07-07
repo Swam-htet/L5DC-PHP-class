@@ -13,7 +13,7 @@ function startTimer() {
   // Update the timer every second
   var timerInterval = setInterval(function () {
     var currentTime = new Date().getTime();
-    var show_time = 2 * 60000 - (currentTime - startTime);
+    var show_time = 1 * 60000 - (currentTime - startTime);
 
     var minutes = Math.floor(show_time / 60000);
     var seconds = Math.floor((show_time % 60000) / 1000);

@@ -1,12 +1,12 @@
 <?php
 function Camp_card($data)
 {
-    echo "<div class='card p-2 m-2 bg-light'>
+    echo "<div class='card p-3 m-2 bg-light'>
                 <div class='card-header'>
                     <h3>$data->name</h3>
                 </div>
                 <div class='card-body'>
-                    <img src='./src/photo/camp.jpeg' alt='camp profile'>
+                    <img src='./src/carousel_one.jpeg' alt='camp profile'>
                 </div>
                 <div class='card-footer'>";
 }

@@ -11,6 +11,10 @@ if ($connection->connect_error) {
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
+include_once "./component/alert.php";
+include_once "./component/here.php";
+include_once "./component/viewCounter.php";
+
 
 
 ?>
@@ -75,7 +79,7 @@ $current_tab = "Register";
 header_function($current_tab);
 
 // navbar 
-navbar_function($list);
+navbar_function($session_user, $list);
 
 ?>
 
@@ -130,6 +134,10 @@ navbar_function($list);
 
 <?php
 
+view_counter($connection);
+
+
 // footer 
+Here($current_tab);
 include_once "./component/footer.php";
 ?>

@@ -1,8 +1,7 @@
 <?php
+
 // session start 
 session_start();
-
-
 
 // connection and check connection 
 include "./config/config.php";
@@ -15,6 +14,9 @@ if ($connection->connect_error) {
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
+include_once './component/alert.php';
+include_once "./component/here.php";
+include_once "./component/viewCounter.php";
 
 ?>
 
@@ -25,8 +27,6 @@ include_once './component/navbar.php';
 $list = array(
     array('name' => 'Home', 'link' => "index.php"),
     array('name' => 'Information', 'link' => "information.php"),
-
-
 );
 
 // current tab 
@@ -37,7 +37,7 @@ $current_tab = "Login";
 header_function($current_tab);
 
 // navbar 
-navbar_function($list);
+navbar_function($session_user, $list);
 
 ?>
 
@@ -45,12 +45,12 @@ navbar_function($list);
 
 <!-- login -->
 <div class="container">
-    <h2 class="text-center m-3">Login Here</h2>
-    <div id="p-3">
-        <div id="timer_box"></div>
-    </div>
+    <div class='card bg-light col-5'>
+        <h2 class="text-center m-3">Login Here</h2>
+        <div id="p-3">
+            <div id="timer_box"></div>
+        </div>
 
-    <div class="row">
         <div class="counter">
             <h3 id="counter-text"></h3>
             <h4 id="alert"></h4>
@@ -76,7 +76,6 @@ navbar_function($list);
     </div>
 </div>
 
-
 <?php
 
 // if post[submit] is true 
@@ -92,16 +91,22 @@ if (isset($_POST["submit"])) {
     if ($result) {
         $no_of_row = $result->num_rows;
         $user_id = $result->fetch_assoc()['Id'];
-        if ($no_of_row == 0) {
+        // login fail
+        if ($no_of_row === 0) {
 
+            // create couter session 
             $_SESSION['counter'] += 1;
+            alert_function("Login available - " . (3 - $_SESSION['counter']), 'warning');
 
-            if ($_SESSION['counter'] > 3) {
+            if ($_SESSION['counter'] >= 3) {
+                $_SESSION['login'] = "Locked";
+                var_dump($_SESSION['login']);
                 echo "<script src='./app/timer.js'></script>";
                 $_SESSION['counter'] = 0;
+                $_SESSION['login'] = "Unlocked";
             }
         } else {
-
+            // login passed
             $_SESSION['session_id'] = $user_id;
             if ($data->email == "admin@gmail.com") {
                 $_SESSION['session_user'] = "Admin";
@@ -115,14 +120,16 @@ if (isset($_POST["submit"])) {
                 window.location='index.php';</script>";
         }
     } else {
-        echo "Login failed : " . $connection->error;
+        alert_function("Login failed : " . $connection->error, 'danger');
     }
 }
 
 ?>
 
 <?php
+view_counter($connection);
 
 // footer 
+Here($current_tab);
 include_once "./component/footer.php";
 ?>

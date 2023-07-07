@@ -1,9 +1,7 @@
 <?php
 
-    // config
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbName = "CampDB";
-
-?>
+// config
+$host = "localhost:3300";
+$username = "root";
+$password = "";
+$dbName = "CampDB";

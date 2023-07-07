@@ -20,6 +20,9 @@ $tbName = "booking";
 include_once "./component/header.php";
 include_once './component/navbar.php';
 include_once "./component/card.php";
+include_once "./component/here.php";
+include_once "./component/viewCounter.php";
+
 ?>
 
 <?php
@@ -38,7 +41,7 @@ $current_tab = "Bookings";
 header_function($current_tab);
 
 // navbar 
-navbar_function($list);
+navbar_function($session_user, $list);
 
 ?>
 
@@ -64,10 +67,11 @@ if (!isset($session_user)) {
         if ($result && $reviews > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
+
                 Booking_card($item, $session_user);
             }
         } else {
-            echo "<h2>No bookings found</h2>";
+            echo "<div class='alert alert-warning'>No Booking found</div>";
         }
     } else {
         echo "<div class='alert alert-danger'>Error: $connection->error</div>";
@@ -78,7 +82,9 @@ if (!isset($session_user)) {
 <script src="./app/dropdown.js"></script>
 
 <?php
+view_counter($connection);
 
 // footer 
+Here($current_tab);
 include_once "./component/footer.php";
 ?>

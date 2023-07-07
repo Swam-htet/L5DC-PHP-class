@@ -20,6 +20,10 @@ $tbName = "contact";
 include_once "./component/header.php";
 include_once './component/navbar.php';
 include_once './component/card.php';
+include_once './component/alert.php';
+include_once "./component/here.php";
+include_once "./component/viewCounter.php";
+
 
 ?>
 
@@ -39,7 +43,7 @@ $current_tab = "Contact";
 header_function($current_tab);
 
 // navbar 
-navbar_function($list);
+navbar_function($session_user, $list);
 
 ?>
 
@@ -71,18 +75,20 @@ if (!isset($session_user)) {
                 Contact_card($item, $session_user);
             }
         } else {
-            echo "No contants found";
+            echo "<div class='alert alert-warning'>No Content found</div>";
         }
         echo "</div>";
     } else {
-        echo "Error: $connection->error";
+        echo "<div class='alert alert-danger'>Error: $connection->error</div>";
     }
     echo "</div>";
 }
 ?>
 
 <?php
+view_counter($connection);
 
 // footer 
+Here($current_tab);
 include_once "./component/footer.php";
 ?>

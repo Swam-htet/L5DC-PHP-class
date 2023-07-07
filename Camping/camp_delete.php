@@ -43,7 +43,7 @@ $current_tab = "Delete";
 header_function($current_tab);
 
 // navbar 
-navbar_function($list);
+navbar_function($session_user, $list);
 
 ?>
 
@@ -52,19 +52,33 @@ navbar_function($list);
 // session user check 
 if ($session_user == "Admin") {
     if (isset($id)) {
+        $search_query = "SELECT * FROM $tbName WHERE id='$id'";
+        $search_result = $connection->query($search_query);
+        if ($search_result->num_rows > 0) {
+            $sql = "DELETE FROM $tbName WHERE id = '$id'";
+            $result = $connection->query($sql);
 
-        $sql = "DELETE FROM $tbName WHERE id = '$id'";
-        $result = $connection->query($sql);
-        if ($result->num_rows === 1) {
-            echo "$id is deleted";
+            if ($result) {
+                echo "<div class='alert alert-success'>
+                            <h3>Camp-$id  is deleted.</h3>
+                    </div>";
+            } else {
+                echo "<div class='alert alert-danger'>
+                        <h3>Connection Error : $connection->error</h3>
+                    </div>";
+            }
         } else {
-            var_dump($connection->error);
+            echo "No camp";
         }
     } else {
-        echo "No ID";
+        echo "<div class='alert alert-warning'>
+                <h3>No such ID</h3>
+            </div>";
     }
 } else {
-    echo "Admin Only";
+    echo "<div class='alert alert-danger'>
+                <h3>Admin Only</h3>
+        </div>";
 }
 
 ?>
