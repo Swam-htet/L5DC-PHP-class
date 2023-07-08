@@ -5,10 +5,11 @@ session_start();
 // component import 
 include_once "./component/header.php";
 include_once './component/navbar.php';
+
 include_once "./component/card.php";
+
 include_once "./component/alert.php";
 include_once "./component/here.php";
-include_once "./component/display.php";
 include_once "./component/viewCounter.php";
 
 
@@ -20,15 +21,15 @@ if ($connection->connect_error) {
     die("Connection Error : " . $connection->connect_error);
 }
 
-
 // session user check and id get
 if (isset($_SESSION['session_user'])) {
     $session_user = $_SESSION['session_user'];
 }
 $userId = $_SESSION['session_id'];
 
-
 ?>
+
+
 
 <?php
 
@@ -36,12 +37,10 @@ $userId = $_SESSION['session_id'];
 $list = array(
     array('name' => 'Home', 'link' => "index.php"),
     array('name' => 'Information', 'link' => "information.php"),
-
 );
 
 // current tab
 $current_tab = "Information";
-
 
 // header
 header_function($current_tab);
@@ -54,6 +53,7 @@ navbar_function($session_user, $list);
 
 
 <?php
+// new review get
 if (isset($session_user)) {
 
     if (!empty($_GET)) {
@@ -69,110 +69,82 @@ if (isset($session_user)) {
 }
 ?>
 
-
-
-
+<!-- camp display  -->
 <div class='container-fluid'>
-
-
 
     <?php
     $tbName = "camp";
-
-
     $sql = "SELECT * from $tbName";
-
-
     $result = $connection->query($sql);
     if ($result) {
-
-        // count the number of user
+        // count the number of pitch 
         $num_pitch = $result->num_rows;
         echo "<h3 class='m-3'>Total Number of Pitch : $num_pitch </h3>";
 
-        // display flex wrep
+        // display with row
         echo "<div class='row'>";
-
-        if ($result && $num_pitch > 0) {
+        if ($result->num_rows > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
+                // var_dump($item);
+    ?>
+                <div class='col-5'>
+                    <div class='card p-3 m-2 bg-light'>
+                        <div class='card-header'>
+                            <h3><?php echo $item->name ?></h3>
+                        </div>
+                        <div class='card-body'>
+                            <img src='<?php echo $item->profile ?>' alt='camp profile of <?php echo $item->name ?>'>
+                        </div>
+                        <div class='card-footer'>
 
-                echo "<div class='col-5'>";
+                            <?php
+                            if ($session_user === "Admin") {
+                            ?>
+                                <a href='./camp_profile.php?id=<?php echo $item->id ?>' class='btn btn-warning'>Detail</a>
+                                <button class='btn btn-danger' id='btn-delete-<?php echo $item->id ?>' onclick='delete_dropdown_function(<?php echo $item->id ?>)'>Delete</button>
+                                <div class='dropdown-box alert alert-danger' id='delete-<?php echo $item->id ?>'>
+                                    <h4>Do you want to delete, <?php echo $item->name ?>?</h4>
+                                    <div>
+                                        <a href='./camp_delete.php?id=<?php echo $item->id ?>' class='btn btn-danger'>Delete</a>
+                                        <button class='btn btn-secondary' onclick='delete_dropdown_function(<?php echo $item->id ?>)'>Cancel</button>
+                                    </div>
+                                </div>
+                            <?php
 
-                // render item
-                Camp_card($item);
+                            }
 
+                            // for user
+                            else if ($session_user === "User") {
+                            ?>
+                                <!-- go to profile -->
+                                <a href='./camp_profile.php?id=<?php echo $item->id ?>' class='btn btn-warning'>Detail</a>
 
-                // for admin
-                if ($session_user === "Admin") {
-
-                    // camp prfile
-                    echo "<a href='./camp_profile.php?id=" . $item->id . "' class='btn btn-warning'>Detail</a>";
-
-                    // camp delete
-                    echo "<button class='btn btn-danger' id='btn-delete-" . $item->id . "'
-            onclick='delete_dropdown_function(" . $item->id . ")'>Delete</button>
-        <div class='dropdown-box alert alert-danger' id='delete-" . $item->id . "'>
-            <h4>Do you want to delete, " . $item->name . "?</h4>
-            <div>
-                <a href='./camp_delete.php?id=" . $item->id . "' class='btn btn-danger'>Delete</a>
-                <button class='btn btn-secondary' onclick='delete_dropdown_function(" . $item->id . ")'>Cancel</button>
-            </div>
-        </div>
-
-        ";
-                }
-                // for user
-                else if ($session_user === "User") {
-                    // camp prfile
-                    echo "<a href='./camp_profile.php?id=" . $item->id . "' class='btn btn-warning'>Detail</a>";
-
-
-                    // review box
-                    echo "<form action='" . $_SERVER["PHP_SELF"] . "'>
-            <button class='btn btn-warning' id='btn-id-" . $item->id . "'
-                onclick='review_dropdown_function(" . $item->id . ")' type='button'>Review </button>
-            <div class='dropdown-box' id='review-" . $item->id . "'>
-                <div>
-                    <label for='comment'>Comment Here : </label>
-                    <textarea name='comment' id='review' cols='40' rows='5'></textarea>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for='point'>Rate the Camp : </label>
-                    <input type='range' min='0' max='10' name='point' id='point' value='0'>
-                </div>
-                <button type='submit' class='btn btn-warning'>Send Review</button>
-                <input type='hidden' name='camp_id' value=" . $item->id . ">
-                <input type='hidden' name='user_id' value=" . $id . ">";
-                    echo "
-            </div>
-        </form>";
-                }
-                echo "
-    </div>
-</div>
-</div>";
+    <?php
             }
         } else {
-            echo "<h4>No pitch found</h4>";
+            echo "<div class='alert alert-warning container m-5 p-5'>
+                        <p>No pitch found</p>
+                </div>";
         }
-        echo "</div>";
     } else {
-        alert_function('Error' . $connection->error, 'danger');
-    }
-
-    echo "</div>";
-
-
+        echo "<div class='alert alert-danger container m-5 p-5'>
+                        <p>Error : $connection->error </p>
+                </div>";    }
     ?>
 
+</div>
 
+<?php
+view_counter($connection);
 
-
-    <?php
-    view_counter($connection);
-
-    // footer 
-    Here($current_tab);
-    include_once "./component/footer.php";
-    ?>
+// footer 
+Here($current_tab);
+include_once "./component/footer.php";
+?>

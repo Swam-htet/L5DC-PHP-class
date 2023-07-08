@@ -2,20 +2,23 @@
 
 function header_function($current)
 {
-    $layout = '
+?>
     <!DOCTYPE html>
     <html lang="en">
-        <head>
+
+    <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>' . $current . '</title>
+        <title><?php echo $current ?></title>
+        <script src="app/dropdown.js"></script>
 
-        
-        <link rel="stylesheet" href="./style/main.css?<?php echo time();?>">
-</head>
 
-<body>';
+        <link rel="stylesheet" href="./style/main.css?<?php echo time(); ?>">
 
-    echo $layout;
+    </head>
+
+    <body>
+
+    <?php
 }

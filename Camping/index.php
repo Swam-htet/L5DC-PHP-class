@@ -132,7 +132,7 @@ echo "</div>";
     <div class='row'>
         <div class='col-6 p-2'>
             <h4 class='m-b-3'>Google Map Navigation - </h4>
-            <iframe class=" w-100"
+            <iframe class=" w-100" height='100%'
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622608.415546101!2d-10.02706748750002!3d50.0649204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486ac0e3f7cf4181%3A0x6d741d2f93e92fbd!2sWild%20Camping%20Cornwall!5e0!3m2!1sen!2smm!4v1688584834797!5m2!1sen!2smm"
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -172,10 +172,10 @@ echo "</div>";
 
 
 <!-- youtube -->
-<div class='container'>
+<div class='container m-4'>
     <div class='row'>
-        <div class='col-6'>
-            <iframe class="card" width="100%" height="100%" src="https://www.youtube.com/embed/TU3ND2cIAFM"
+        <div class='col-8'>
+            <iframe class="card" width="100%" height="500px" src="https://www.youtube.com/embed/TU3ND2cIAFM"
                 title="Solo Tarp Wild Camping On A Windy Hill 🌤️" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>

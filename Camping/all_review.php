@@ -1,10 +1,20 @@
 <?php
 session_start();
 
-$user_id = $_SESSION['session_id'];
 if (isset($_SESSION['session_user'])) {
     $session_user = $_SESSION['session_user'];
 }
+
+// camp id 
+if (isset($_GET['id'])) {
+    $camp_id = $_GET['id'];
+}
+
+// session id 
+if (isset($_SESSION['session_id'])) {
+    $user_id = $_SESSION['session_id'];
+}
+
 
 
 // connection and connection check  
@@ -50,37 +60,56 @@ navbar_function($session_user, $list);
 if (!isset($session_user)) {
     echo "User Only";
 } else {
-    echo "<div class = 'container'>";
+    $review_table = "review";
+    $user_table   = "user";
 
-    // all review for adming 
-    if ($session_user === "Admin") {
+    $sql = "SELECT u.email, u.phoneNumber, u.id AS user_id, r.point, r.comment, r.id AS review_id, r.camp_id FROM $user_table u JOIN review r ON u.id = r.user_id WHERE r.camp_id = '$camp_id'";
 
-        $sql = "SELECT * from $tbName order by id";
-    }
-    // own review for user 
-    else {
-        $sql = "SELECT * from $tbName where user_id = " . $user_id . "";
-    }
+
     $result = $connection->query($sql);
-
     if ($result) {
 
-        $reviews = $result->num_rows;
-        echo "<div>";
-
-        if ($result && $reviews > 0) {
+        echo "<div class='card'>";
+        if ($result->num_rows > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
-                Review_card($item, $session_user);
+?>
+                <div class='container bg-light m-2' id='review-<?php echo $item->review_id ?>'>
+                    <div class="row p-3">
+                        <div class='col-3'>
+                            <p class='m-b-2'>Email : <?php echo $item->email ?></p>
+                            <p>Phone Number : <?php echo $item->phoneNumber ?></p>
+                        </div>
+                        <div class='col-6'>
+                            <p>
+                                Review Message : <?php echo $item->comment ?>
+                            </p>
+                        </div>
+                        <div class='col'>
+                            <p>
+                                Point : <?php echo $item->point ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+<?php
+
+
+                // review
+
             }
+            
         } else {
-            echo "<div class='alert alert-warning'>No reveiw found</div>";
+            echo "<div class='alert alert-light p-2'>
+                            <p>No Review </p>
+                        </div>";
         }
-        echo "</div>";
     } else {
-        echo "<div class='alert alert-danger'>Error: $connection->error</div>";
+        echo "<div class='alert alert-danger'>
+                            <p>Error : $connection->error </p>
+                        </div>";
     }
-    echo "</div>";
 }
 ?>
 

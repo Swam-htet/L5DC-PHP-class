@@ -114,7 +114,7 @@ body
 ol,
 ul
 {
-    list-style: none;
+    list-style:none;
 }
 
 blockquote,
@@ -284,6 +284,11 @@ html
     box-sizing: border-box;
     width: 100%;
 
+}
+
+/* list */
+.list{
+    list-style: disc;
 }
 
 
@@ -713,10 +718,19 @@ html
 
 }
 
+
 .navbar-brand
 {
     text-decoration: none;
     font-size: 200%;
+    color: var(--dark);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand :hover
+{
+    top: 10px;
 }
 
 /* .navbar-item {} */
@@ -854,6 +868,7 @@ h6,
     border-radius: 1rem;
     padding: 1rem;
     margin: 1rem;
+    box-sizing: border-box;
 }
 
 .card-img

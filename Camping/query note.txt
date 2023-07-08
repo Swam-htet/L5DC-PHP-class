@@ -1,11 +1,4 @@
-// db create
-CREATE DATABASE CampDB;
 
-// table chose
-USE CampDB;
-
-
-// user table creae
 CREATE TABLE User 
 (Id integer auto_increment primary key,
 firstName varchar(255) not null, 
@@ -15,15 +8,14 @@ password varchar(255) not null,
 phoneNumber varchar(255) not null
 );
 
-// user register 
 INSERT INTO User (firstName,lastName,email,password,phoneNumber) 
-values("Admin","Admin","admin@gmail.com","admin","09500600700");
+values("Admin","Admin","admin@gmail.com","admin123","09500600700");
 
 
-// login check 
-SELECT * FROM User WHERE email = "admin@gmail.com";
+INSERT INTO User (firstName,lastName,email,password,phoneNumber) 
+values("Swam","Htet","swamhtet123@gmail.com","alphar123","09300400500");
 
-// camp table 
+
 create table camp (
     id integer primary key auto_increment,
     name varchar(255) not null,
@@ -39,10 +31,6 @@ create table camp (
     profile varchar(255) not null
 );
 
-INSERT INTO (name,address,location,features,country,phone,no_premium,no_improved,no_standard,slideShow,profile) VALUES('','','','','','','','','','','');
-
-
-SELECT * from Camp;
 
 CREATE TABLE review 
     (id integer auto_increment primary key,
@@ -50,10 +38,9 @@ CREATE TABLE review
     point integer,
     user_id integer,
     camp_id integer,
-    foreign key(user_id) references user(id),
-    foreign key(camp_id) references camp(id));
+    foreign key(user_id) references user(id) ON DELETE CASCADE,
+    foreign key(camp_id) references camp(id) ON DELETE CASCADE);
 
-insert into review (comment,point,user_id,camp_id) values();
 
 create table booking(
     id integer primary key auto_increment,
@@ -64,17 +51,66 @@ create table booking(
     no_day integer not null,
     user_id integer,
     camp_id integer,
-    foreign key(user_id) references user(id),
-    foreign key(camp_id) references camp(id)
-)
+    foreign key(user_id) references user(id) on DELETE CASCADE,
+    foreign key(camp_id) references camp(id) on DELETE CASCADE
+);
 
-insert into booking(no_premium,no_improved,no_standard,date,no_day,camp_id,user_id) values();
 
 CREATE TABLE contact (
     id integer auto_increment primary key,
     message text not null,
     user_id integer,
     camp_id integer,
-    foreign key(user_id) references user(id),
-    foreign key(camp_id) references camp(id)
-)
+    foreign key(user_id) references user(id) on DELETE CASCADE,
+    foreign key(camp_id) references camp(id) on DELETE CASCADE
+);
+
+CREATE TABLE Features (
+  id INT PRIMARY KEY,
+  feature_name VARCHAR(50),
+  description VARCHAR(200)
+);
+
+INSERT INTO Features (id, feature_name, description)
+VALUES
+  (1, 'Cabin Accommodation', 'Comfortable cabins for overnight stays'),
+  (2, 'Tent Camping', 'Spacious camping area for setting up tents'),
+  (3, 'Outdoor Activities', 'Various outdoor activities like hiking, biking, etc.'),
+  (4, 'Campfire Pit', 'Cozy campfire pit for evening gatherings'),
+  (5, 'Swimming Pool', 'Refreshing swimming pool for recreational use'),
+  (6, 'Sports Facilities', 'Sports fields and courts for games and tournaments'),
+  (7, 'Nature Trails', 'Scenic nature trails for walking and exploring'),
+  (8, 'Canoeing/Kayaking', 'Opportunity for canoeing and kayaking on nearby lakes'),
+  (9, 'Adventure Course', 'Exciting adventure course for thrill-seekers'),
+  (10, 'Wildlife Observation', 'Chance to observe local wildlife in their natural habitat'),
+  (11, 'Arts and Crafts', 'Creative arts and crafts activities for all ages'),
+  (12, 'Campfire Cooking', 'Learn to cook delicious meals over a campfire'),
+  (13, 'Camp Store', 'On-site store for purchasing essentials and snacks'),
+  (14, 'Camp Counselors', 'Trained counselors for guidance and supervision'),
+  (15, 'Evening Entertainment', 'Evening programs and entertainment for campers');
+
+
+CREATE TABLE `counter` (
+  `count` int(255) NOT NULL,
+  `id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `visitedip` (
+  `ip` text NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `counter` (`count`, `id`) VALUES
+(0, 0);
+
+ CREATE TABLE localAttraction (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  photo VARCHAR(255),
+  description TEXT,
+  camp_id INT NOT NULL,
+  FOREIGN KEY (camp_id) REFERENCES camp(id) on DELETE CASCADE
+);

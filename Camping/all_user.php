@@ -62,7 +62,25 @@ if ($session_user === "Admin") {
         if ($result && $reviews > 0) {
             while ($item = $result->fetch_assoc()) {
                 $item = json_decode(json_encode($item), false);
-                User_card($item);
+            
+
+?>
+                <div class='card bg-light p-2 m-b-3'>
+                    <div class='row'>
+                        <div class="col-2">
+                            <p>Name : <?php echo $item->firstName.$item->lastName ?></p>
+                        </div>
+                        <div class="col-6">
+                            <p>Email : <?php echo $item->email ?></p>
+                        </div>
+                        <div class="col-2">
+                            <p>Phone Number : <?php echo $item->phoneNumber ?></p>
+                        </div>
+
+                    </div>
+                </div>
+
+<?php
             }
         } else {
             echo "<div class='alert alert-warning'>No User found</div>";

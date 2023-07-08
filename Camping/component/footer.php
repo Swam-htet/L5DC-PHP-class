@@ -1,3 +1,4 @@
+<!-- google translate  -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 <script type="text/javascript">
@@ -8,6 +9,9 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 </script>
+
+
+<!-- footer  -->
 <footer class="bg-light p-4 m-t-2">
     <div class="container">
         <div class="row">
@@ -83,7 +87,8 @@ function googleTranslateElementInit() {
 
 </footer>
 
-<script src="./app/dropdown.js"></script>
+
+<!-- <script src="./app/dropdown.js"></script> -->
 
 
 </body>
