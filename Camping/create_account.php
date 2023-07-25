@@ -88,7 +88,7 @@ navbar_function($session_user, $list);
 <div class="container">
     <h2 class="text-center m-2">Account Register </h2>
 
-    <div class="row">
+    <div class="container">
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
             <div class='m-b-3'>

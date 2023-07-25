@@ -60,9 +60,7 @@ CREATE TABLE contact (
     id integer auto_increment primary key,
     message text not null,
     user_id integer,
-    camp_id integer,
     foreign key(user_id) references user(id) on DELETE CASCADE,
-    foreign key(camp_id) references camp(id) on DELETE CASCADE
 );
 
 CREATE TABLE Features (
@@ -101,6 +99,7 @@ CREATE TABLE `visitedip` (
   `ip` text NOT NULL,
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 INSERT INTO `counter` (`count`, `id`) VALUES
 (0, 0);

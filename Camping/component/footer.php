@@ -2,13 +2,26 @@
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+
+<!-- responsive navbar function -->
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
 }
 </script>
+
 
 
 <!-- footer  -->
@@ -23,7 +36,7 @@ function googleTranslateElementInit() {
     <div class="p-1">
 
         <div class="row">
-            <div class="col-4 p-2">
+            <div class="col-6 p-2">
                 <h3 class="p-2">About GWSC</h3>
                 <p class="footer-text fs-larger p-2">
                     Global Wild Swimming and Camping (GWSC) offers unique camping and wild swimming experiences in
@@ -55,6 +68,11 @@ function googleTranslateElementInit() {
                                 <img src="./src/icon/youtube.png" class="social-icon" alt="youtube">
                             </a>
                         </li>
+                        <li class="social-item m-e-5">
+                            <a href="rss.php" class="social-link">
+                                <img src="./src/icon/xampp.png" class="social-icon" alt="RSS">
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -74,6 +92,7 @@ function googleTranslateElementInit() {
 
                 <ul class="footer-list">
                     <li class="footer-list-item m-b-2"><a href="policy.php" class="item-link">Privacy Policy</a></li>
+
                     <li class="footer-list-item m-b-2"><a href="" class="item-link">Term And Conditions</a></li>
 
                 </ul>

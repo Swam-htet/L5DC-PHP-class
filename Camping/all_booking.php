@@ -54,11 +54,11 @@ if (!isset($session_user)) {
     // all review for adming 
     if ($session_user === "Admin") {
 
-        $sql = "SELECT booking.id, booking.no_standard,booking.no_premium,booking.no_standard,booking.date,booking.no_day, User.firstName, User.lastName, User.email, User.phoneNumber, camp.id AS campId, camp.name AS campName FROM booking JOIN User ON booking.user_id = User.id JOIN camp ON booking.camp_id = camp.id";
+        $sql = "SELECT booking.id, booking.no_standard,booking.no_premium,booking.no_improved,booking.date,booking.no_day, User.firstName, User.lastName, User.email, User.phoneNumber, camp.id AS campId, camp.name AS campName FROM booking JOIN User ON booking.user_id = User.id JOIN camp ON booking.camp_id = camp.id";
     }
     // own review for user 
     else {
-        $sql = "SELECT booking.id, booking.no_standard,booking.no_premium,booking.no_standard,booking.date,booking.no_day, User.firstName, User.lastName, User.email, User.phoneNumber, camp.id AS campId, camp.name AS campName FROM booking JOIN User ON booking.user_id = User.id JOIN camp ON booking.camp_id = camp.id where User.id= '$user_id'";
+        $sql = "SELECT booking.id, booking.no_standard,booking.no_premium,booking.no_improved,booking.date,booking.no_day, User.firstName, User.lastName, User.email, User.phoneNumber, camp.id AS campId, camp.name AS campName FROM booking JOIN User ON booking.user_id = User.id JOIN camp ON booking.camp_id = camp.id where User.id= '$user_id'";
     }
 
     $result = $connection->query($sql);
@@ -75,15 +75,17 @@ if (!isset($session_user)) {
 ?>
                 <div class='container card bg-light'>
                     <div class='row'>
-                        <div class='col-5'>
+                        <div class='col-4'>
                             <p class='m-b-2'>Booking ID : <?php echo $item->id ?></p>
                             <ul class='m-b-2'>
-                                <li>Number of standard Room : <?php echo $item->no_standard ?></li>
-                                <li>Number of Improved Room : <?php echo $item->no_improved ?></li>
-                                <li>Number of Premium Room : <?php echo $item->no_premium ?></li>
+                                <li class='m-b-2'>Number of standard Room : <?php echo $item->no_standard ?></li>
+                                <li class='m-b-2'>Number of Improved Room : <?php echo $item->no_improved ?></li>
+                                <li class='m-b-2'>Number of Premium Room : <?php echo $item->no_premium ?></li>
 
                             </ul>
+                            
                             <p class='m-b-2'>Booking Date : <?php echo $item->date ?></p>
+                            
                             <p class='m-b-2'>Number of Day : <?php echo $item->no_day ?></p>
 
 
@@ -94,7 +96,7 @@ if (!isset($session_user)) {
                             <p class='m-b-2'>Phone Number : <?php echo $item->phoneNumber ?></p>
 
                         </div>
-                        <div class='col-2'>
+                        <div class='col-3'>
                             <p>To camp : <?php echo $item->campName ?></p>
                         </div>
 
