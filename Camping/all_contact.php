@@ -78,9 +78,10 @@ if (!isset($session_user)) {
     }
     // own review for user 
     else {
-        $sql = "SELECT contact.id, contact.message, User.id, User.firstName, User.lastName, User.email, User.phoneNumber FROM contact JOIN User ON contact.user_id = User.id where User.id = $user_id";
+        $sql = "SELECT contact.id, contact.message, User.firstName, User.lastName, User.email, User.phoneNumber FROM contact JOIN User ON contact.user_id = User.id where User.id='$user_id'";
     }
 
+    // $sql    = "Select * from contact";
     $result = $connection->query($sql);
 
     if ($result) {

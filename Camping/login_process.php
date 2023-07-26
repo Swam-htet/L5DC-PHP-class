@@ -114,7 +114,7 @@ if ($result) {
         alert_function("Login Failure", 'warning');
     } else {
         // login passed
-        $_SESSION['session_id'] = $user_id;
+        $_SESSION['session_id'] = $user_data['Id'];
         if ($data->email == "admin@gmail.com") {
             $_SESSION['session_user'] = "Admin";
         } else {
@@ -124,8 +124,8 @@ if ($result) {
 
         // home page open
         echo "<script>
-window.location = 'index.php';
-</script>";
+        window.location = 'index.php';
+        </script>";
     }
 } else {
     alert_function("Login failed : " . $connection->error, 'danger');
